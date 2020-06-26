@@ -14,13 +14,13 @@ import numpy as np
 st_params = dict(maxCorners=30, qualityLevel=0.2, minDistance=2, blockSize=7)
 
 # Parameters for Lucas-Kande optical flow
-lk_params = dict(winSize=(15,15), maxLevel=2, criteria=(cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1))
+lk_params = dict(winSize=(15, 15), maxLevel=2, criteria=(cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 1))
 
 # Video Capture
-cap = cv2.VideoCapture('Video/run.mp4')
+cap = cv2.VideoCapture('run.mp4')
 
 # Color for optical flow
-color = (0,255,0)
+color = (0, 255, 0)
 
 # Read the capture and get the first frame
 ret, first_frame = cap.read()
@@ -35,7 +35,7 @@ prev = cv2.goodFeaturesToTrack(prev_gray, mask=None, **st_params)
 mask = np.zeros_like(first_frame)
 
 # While loop
-while(cap.isOpened()):
+while cap.isOpened():
     # Read the capture and get the first frame
     ret, frame = cap.read()
     
@@ -46,25 +46,25 @@ while(cap.isOpened()):
     next, status, error = cv2.calcOpticalFlowPyrLK(prev_gray, gray, prev, None, **lk_params)
     
     # Select good feature for the previous position
-    good_old=prev[status==1]
+    good_old = prev[status==1]
     
     # Select good feature for the next position
-    good_new=next[status==1]
+    good_new = next[status==1]
     
     # Draw optical flow track
-    for i , (new,old) in enumerate(zip(good_new, good_old)):
+    for i, (new, old) in enumerate(zip(good_new, good_old)):
     
         # Return coordinates for the new point
-        a,b = new.ravel()
+        a, b = new.ravel()
         
         # Return coordinates for the old point
-        c,d=old.ravel()
+        c, d = old.ravel()
         
         # Draw line between new and old position
-        mask = cv2.line(mask, (a,b), (c,d), color, 2)
+        mask = cv2.line(mask, (a, b), (c, d), color, 2)
         
         # Draw filled circle
-        frame = cv2.circle(frame, (a,b), 3, color, -1)
+        frame = cv2.circle(frame, (a, b), 3, color, -1)
         
     # Overlay optical flow on original frame
     output = cv2.add(frame, mask)
@@ -73,7 +73,7 @@ while(cap.isOpened()):
     prev_gray=gray.copy()
     
     # Update previous good features
-    prev=good_new.reshape(-1,1,2)
+    prev=good_new.reshape(-1, 1, 2)
     
     # Open new window and display the output
     cv2.imshow("Optical Flow", output)
@@ -85,34 +85,3 @@ while(cap.isOpened()):
 # Release and Destroy
 cap.release()
 cv2.destroyAllWindows
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
