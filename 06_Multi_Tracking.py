@@ -7,7 +7,7 @@
 # Import Libraries
 import cv2
 import sys
-from random import radint
+import random
 
 
 # Tracker Types
@@ -50,13 +50,13 @@ if __name__ == '__main__':
     print("Default tracking algorithm MOSSE \n"
          "Available algorithms are: \n")
     for ta in tracker_types:
-        print(tr)
+        print(ta)
        
     tracker_type = 'MOSSE'
 
 
     # Create a video capture
-    cap - cv2.VideoCapture('Video/Vehicles.mp4')
+    cap = cv2.VideoCapture('run.mp4')
     
     # Read first frame
     success, frame = cap.read()
@@ -74,40 +74,40 @@ if __name__ == '__main__':
     
         # draw rectangles, select ROI, open new window
         rect_box = cv2.selectROI('MultiTracker', frame)
-        rects = append(rect_box)
-        colors.append((randint(64,255), randint(64,255), randint(64,255)))
+        rects = rects.append(rect_box)
+        color.append((random.randint(64, 255), random.randint(64, 255), random.randint(64, 255)))
         print('press q to stop selecting boxes and start multitracking')
         print('Press any key to select another box')
         
         
         
-        #close window
-        if cv2.waitKey(0) & oxFF == 113==q
+# close window
+        if cv2.waitKey(0) & 0xFF == 'q':
             break
         
-    # print message
+# print message
     print(f'Select boxes and {rects}')
     
     
-    # Create multitracker
-    multitracker = cv2MultiTracker_create()    
+# Create multitracker
+    multiTracker = cv2.MultiTracker_create()
     
-    # Initialize multitracker
+# Initialize multitracker
     for rect_box in rects:
-        multitracker.add(tracker_name(tracker_types), frame, rect_box)
+        multiTracker.add(tracker_name(tracker_types), frame, rect_box)
     
-    #Video and Tracker
+    # Video and Tracker
     # while loop
     while cap.isOpened():
         
         # update location objects
-        success, boxes = multitracker.update(frame)
+        success, boxes = multiTracker.update(frame)
         
-        # draw the objectes tracked
-        for i, newbox in enumerate(boxes):
-            pts1 = (int(newbox[0]), int(newbox[1]))
-            pts2 = (int(newbox[0] + newbox[2]),int(newbox[1] + newbox[3]))
-            cv2.rectangle(frame, pts1, pts2, colors[i], 2, 1)
+        # draw the objects tracked
+        for i, newBox in enumerate(boxes):
+            pts1 = (int(newBox[0]), int(newBox[1]))
+            pts2 = (int(newBox[0] + newBox[2]), int(newBox[1] + newBox[3]))
+            cv2.rectangle(frame, pts1, pts2, color[i], 2, 1)
                     
         # display frame
         cv2.imshow('Multitracker', frame)

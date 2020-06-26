@@ -26,24 +26,24 @@ def ask_for_tracker():
     print('Enter 7 for CSRT: ')
     
     choice = input('Please select your tracker: ')
-    if choice =='0':
-        tracker = cv2.TrackerBoosting_create()
+    if choice == '0':
+        trackerchoice = cv2.TrackerBoosting_create()
     if choice == '1':
-        tracker = cv2.TrackerMIL_create()
+        trackerchoice = cv2.TrackerMIL_create()
     if choice == '2':
-        tracker = cv2.TrackerKCF_create()
-    if choice =='3':
-        tracker = cv2.TrackerTLD_create()
+        trackerchoice = cv2.TrackerKCF_create()
+    if choice == '3':
+        trackerchoice = cv2.TrackerTLD_create()
     if choice == '4':
-        tracker = cv2.TrackerMedianFlow_create()
+        trackerchoice = cv2.TrackerMedianFlow_create()
     if choice == '5':
-        tracker = cv2.TrackerGOTURN_create()
-    if choice =='6':
-        tracker = cv2.TrackerMOSSE_create()
+        trackerchoice = cv2.TrackerGOTURN_create()
+    if choice == '6':
+        trackerchoice = cv2.TrackerMOSSE_create()
     if choice == '7':
-        tracker = cv2.TrackerCSRT_create()
+        trackerchoice = cv2.TrackerCSRT_create()
         
-    return tracker
+    return trackerchoice
 
 
 # ### It's a Kind of Magic
@@ -58,16 +58,16 @@ tracker = ask_for_tracker()
 tracker_name = str(tracker).split()[0][1:]
 
 # Capture the Video
-cap = cv2.VideoCapture('Video/Vehicles.mp4')
+cap = cv2.VideoCapture('run.mp4')
 
 # Read the first frame
 ret, frame = cap.read()
 
 # Select our ROI
-roi = cv2.selectROI(frame, false)
+Roi = cv2.selectROI(frame, False)
 
 # Initialize tracker
-ret = tracker.init(frame, roi)
+ret = tracker.init(frame, Roi)
 
 
 # while Loop
