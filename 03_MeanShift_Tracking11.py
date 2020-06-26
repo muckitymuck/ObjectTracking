@@ -31,7 +31,7 @@ ret, frame = cap.read()
 # In[7]:
 
 
-face_casc = cv2.CascadeClassifier('Haarcascades/haarcascade_frontalface_default.xml')
+face_casc = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 face_rects = face_casc.detectMultiScale(frame)
 
 
