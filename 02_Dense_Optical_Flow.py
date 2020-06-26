@@ -9,7 +9,7 @@ import cv2
 import numpy as np
 
 # Video Capture
-cap = cv2.VideoCapture('Video/chaplin.mp4')
+cap = cv2.VideoCapture('chaplin.mp4')
 
 # Read the capture and get the first frame
 ret, first_frame = cap.read()

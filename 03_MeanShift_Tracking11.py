@@ -15,7 +15,7 @@ import numpy as np
 # In[5]:
 
 
-cap = cv2.VideoCapture('Video/face_track.mp4')
+cap = cv2.VideoCapture('face_track.mp4')
 
 
 # ### Take first frame of the video
