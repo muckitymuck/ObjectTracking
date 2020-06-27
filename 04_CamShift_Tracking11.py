@@ -31,16 +31,16 @@ ret, frame = cap.read()
 # In[4]:
 
 
-face_casc = cv2.CascadeClassifier('Haarcascades/haarcascade_frontalface_default.xml')
+face_casc = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 face_rects = face_casc.detectMultiScale(frame)
 
 
 # ### Convert the list to a tuple
 
-# In[5]:
 
 
-face_x, face_y, w, h = tuple(face_rects[0])
+
+face_x,face_y,w,h = tuple(face_rects[0])
 track_window = (face_x, face_y, w, h)
 
 
